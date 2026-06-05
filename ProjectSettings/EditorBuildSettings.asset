@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/ContinueGame.unity
+    guid: 9149f2f3874196243807599c89ad21c0
+  - enabled: 1
+    path: Assets/Scenes/LevelSelect.unity
+    guid: 22abe3bc3d7541c4a9fe84dd8c491724
+  - enabled: 1
+    path: Assets/Scenes/Configure.unity
+    guid: bcffbc3c9aaa6b94ba8f357fba158a7d
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: fc00ea4e2192583459c9bee2490f3e62
+  - enabled: 1
+    path: Assets/Scenes/Level/Level 1.unity
+    guid: 6a873101bed08d0408ead1786c57c46d
+  - enabled: 1
+    path: Assets/Scenes/Level/Level 2.unity
+    guid: b120d43285a15f949b1ad557ceb5a9b9
+  - enabled: 1
+    path: Assets/Scenes/Level/Level 3.unity
+    guid: 524ba9a688610a6468d5a0d0237b9f3a
+  - enabled: 1
+    path: Assets/Scenes/Level/Level 4.unity
+    guid: 7b830edac364ab44cbba0ccf771a2180
+  m_configObjects:
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_UseUCBPForAssetBundles: 0
