@@ -17,15 +17,19 @@ public class SavePlayer : MonoBehaviour
     public int level;
     public int levelMax;
     public float timeRun;
+    public static bool loadSaveOnStart = true;
+
 
     void Start()
     {
         level = SceneManager.GetActiveScene().buildIndex - 4;
 
-        if (SaveAndLoad.SaveExists())
+        if (SaveAndLoad.SaveExists() && loadSaveOnStart)
         {
             LoadPlayer();
+
         }
+        loadSaveOnStart = true;
         //txtTimeRun.text = timeRun.ToString("00");
         // txtNumberLevel.text = levelActive.ToString();
     }

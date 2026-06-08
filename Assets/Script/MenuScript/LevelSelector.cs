@@ -10,6 +10,7 @@ public class LevelSelector : MonoBehaviour
     public float transitionTime = 1f;
     //  private TransitionManager transitionManager;
     public Button[] levelButtons;
+    private int levelReached;
     //private GameManager gameManager;
 
     void Start()
@@ -18,25 +19,20 @@ public class LevelSelector : MonoBehaviour
         //  gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         //  transitionManager = GameObject.Find("Crossfade").GetComponent<TransitionManager>();
         PlayerData data = SaveAndLoad.LoadPlayer();
-        if (data == null)
-        {
-            Debug.Log("Nenhum save encontrado.");
+        levelReached = 1;
 
-            return;
+        if (data != null)
+        {
+            levelReached = data.level;
         }
-        Debug.Log("Level ."+data.level);
 
-        int levelReached = data.level;
-        if (levelReached == 0)
+
+        // int levelReached = PlayerPrefs.GetInt("levelReached", 1);
+
+
+        for (int i = 0; i < levelButtons.Length; i++)
         {
-            levelReached = 1;
-        }
-       // int levelReached = PlayerPrefs.GetInt("levelReached", 1);
-
-
-        for (int i = 0; i <levelButtons.Length; i++)
-        {
-            if (i + 1 >levelReached)
+            if (i + 1 > levelReached)
             {
                 levelButtons[i].interactable = false;
             }
