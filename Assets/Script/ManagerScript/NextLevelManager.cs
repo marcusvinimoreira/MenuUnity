@@ -19,10 +19,10 @@ public class NextLevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.A))
+        if(Input.GetKeyDown(KeyCode.B))
         {
-            Debug.Log("NextLevel");
             nextLevelUI.SetActive(true);
+            SavePlayer.loadPosition = false;
             savePlayer.PlayerSaveNextLevel();
         }
     }

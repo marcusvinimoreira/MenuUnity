@@ -10,14 +10,14 @@ public class PlayerData
 {
     //estou pegando o número do level index(a cena que está aberta no momento do game para salvar)
     public int level; //= SceneManager.GetActiveScene().buildIndex;
-    public int levelMax;
+    public bool[] levelUnlocked;
     public float timeRun;
     public float[] position;
 
     public PlayerData(SavePlayer player)
     {
         level = player.level;
-        levelMax = player.levelMax;
+        levelUnlocked = player.levelUnlocked;
         timeRun = player.timeRun;
         position = new float[3];
         position[0] = player.transform.position.x;

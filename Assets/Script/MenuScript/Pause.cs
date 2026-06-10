@@ -11,8 +11,8 @@ public class PauseMenu : MonoBehaviour
     public Animator transition;
     public float transitionTime = 1f;
     public static bool GameIsPaused = false;
-    public GameObject pauseMenuUI;
-    public Button btnResume, btnLevelSelect, btnQuit;
+    public GameObject pauseMenuUI, confirmBackLevelSelect;
+    // public Button btnResume, btnLevelSelect;
     public SavePlayer savePlayer;
 
     // Start is called before the first frame update
@@ -47,6 +47,8 @@ public class PauseMenu : MonoBehaviour
     {
 
         pauseMenuUI.SetActive(false);
+        confirmBackLevelSelect.SetActive(false);
+
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
@@ -60,8 +62,8 @@ public class PauseMenu : MonoBehaviour
 
     public void SaveAndQuit()
     {
-
         Time.timeScale = 1f;
+        SavePlayer.loadPosition = false;
         savePlayer.PlayerSave();
         StartCoroutine(LoadLevel("Menu"));
     }
@@ -70,15 +72,32 @@ public class PauseMenu : MonoBehaviour
     public void LevelSelectPanel()
     {
         Time.timeScale = 1f;
+        confirmBackLevelSelect.SetActive(true);
+
+    }
+    public void ConfirmBackLevelSelect()
+    {
+        Time.timeScale = 1f;
+        confirmBackLevelSelect.SetActive(false);
+        pauseMenuUI.SetActive(false);
+
+        SavePlayer.loadSaveOnStart = false;
         StartCoroutine(LoadLevel("LevelSelect"));
 
+    }
+    public void CancelBackLevelSelect()
+    {
+        confirmBackLevelSelect.SetActive(false);
+        pauseMenuUI.SetActive(false);
+
+        Time.timeScale = 1f;
+        GameIsPaused = false;
     }
 
     public void RestartLevel()
     {
         Time.timeScale = 1f;
         SavePlayer.loadSaveOnStart = false;
-
         string currentSceneIndex = SceneManager.GetActiveScene().name;
         StartCoroutine(LoadLevel(currentSceneIndex));
 
