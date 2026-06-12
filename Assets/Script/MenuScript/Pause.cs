@@ -43,6 +43,14 @@ public class PauseMenu : MonoBehaviour
         }
 
     }
+
+    void Pause()
+    {
+        pauseMenuUI.SetActive(true);
+        Time.timeScale = 0f;
+        GameIsPaused = true;
+    }
+
     public void Resume()
     {
 
@@ -53,17 +61,18 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
     }
 
-    void Pause()
+    public void RestartLevel()
     {
-        pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
-        GameIsPaused = true;
+        Time.timeScale = 1f;
+        SavePlayer.loadSaveOnStart = false;
+        string currentSceneIndex = SceneManager.GetActiveScene().name;
+        StartCoroutine(LoadLevel(currentSceneIndex));
+
     }
 
     public void SaveAndQuit()
     {
         Time.timeScale = 1f;
-        SavePlayer.loadPosition = false;
         savePlayer.PlayerSave();
         StartCoroutine(LoadLevel("Menu"));
     }
@@ -82,6 +91,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
 
         SavePlayer.loadSaveOnStart = false;
+        // savePlayer.PlayerSave();
         StartCoroutine(LoadLevel("LevelSelect"));
 
     }
@@ -94,14 +104,7 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
     }
 
-    public void RestartLevel()
-    {
-        Time.timeScale = 1f;
-        SavePlayer.loadSaveOnStart = false;
-        string currentSceneIndex = SceneManager.GetActiveScene().name;
-        StartCoroutine(LoadLevel(currentSceneIndex));
 
-    }
 
     IEnumerator LoadLevel(string levelIndex)
     {

@@ -18,14 +18,13 @@ public class SavePlayer : MonoBehaviour
     public bool[] levelUnlocked = new bool[4];
     public float timeRun;
     public static bool loadSaveOnStart = true; // variável static usada no restart game para carregar a posição inicial e não fazer o load
-    public static bool loadPosition = true; // variável static usada no next level game para carregar a posição inicial e não fazer o load
 
 
     void Start()
     {
         level = SceneManager.GetActiveScene().buildIndex - 4;
         levelUnlocked[0] = true;
-        if (SaveAndLoad.SaveExists() /*&& loadSaveOnStart /*&& loadPosition*/)
+        if (SaveAndLoad.SaveExists() /*&& loadSaveOnStart*/)
         {
             LoadPlayer();
 
@@ -36,24 +35,19 @@ public class SavePlayer : MonoBehaviour
             levelUnlocked[0] = true;
         }
         loadSaveOnStart = true;
-        loadPosition = true;
         //txtTimeRun.text = timeRun.ToString("00");
-        // txtNumberLevel.text = levelActive.ToString();
     }
 
     void Update()
     {
         timeRun += Time.deltaTime;
-
-        // txtTimeRun.text = timeRun.ToString("00");
-
     }
     //Esse método é chamado no pause 
     //Quando o player deseja sair do game 
     public void PlayerSave()
     {
         level = SceneManager.GetActiveScene().buildIndex - 4;
-        levelUnlocked[level] = true;
+        levelUnlocked[level-1] = true;
         SaveAndLoad.SavePlayer(this);
     }
 
@@ -85,11 +79,13 @@ public class SavePlayer : MonoBehaviour
         }
         level = data.level;
         levelUnlocked = data.levelUnlocked;
-       
+
 
         timeRun = data.timeRun;
         int levelCurrent = SceneManager.GetActiveScene().buildIndex - 4;
-        if (/*loadPosition*/ data.level == levelCurrent)
+        Debug.Log("Level Data " + data.level);
+        Debug.Log("Level Current " + levelCurrent);
+        if (data.level == levelCurrent && loadSaveOnStart)
         {
             Vector3 pos;
             pos.x = data.position[0];
@@ -103,13 +99,6 @@ public class SavePlayer : MonoBehaviour
 
     }
 
-
-    public void LoadGame()
-    {
-
-        SceneManager.LoadScene(level);
-
-    }
 
 
 }

@@ -31,9 +31,12 @@ public class LevelSelector : MonoBehaviour
             levelReached = new bool[levelButtons.Length];
             levelReached[0] = true;
         }
-
-
         for (int i = 0; i < levelButtons.Length; i++)
+        {
+            Debug.Log(i + " Levele Reached: " + levelReached[i]);
+        }
+
+            for (int i = 0; i < levelButtons.Length; i++)
         {
             if (!levelReached[i])
             {

@@ -22,7 +22,6 @@ public class NextLevelManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.B))
         {
             nextLevelUI.SetActive(true);
-            SavePlayer.loadPosition = false;
             savePlayer.PlayerSaveNextLevel();
         }
     }
